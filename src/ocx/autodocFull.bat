@@ -1,0 +1,3 @@
+pasdoc --output Docs -L br --marker=** --marker-optional --visible-members=private,protected,public,published --use-tipue-search --write-uses-list --link-gv-uses jpg --link-gv-classes jpg --graphviz-uses --graphviz-classes --name "TecnoSpeed Plug Storage" --title "TecnoSpeed Plug Storage" --auto-link spdPlugStorage.pas
+dot -Grankdir=LR -T jpg Docs\GVUses.dot > Docs\GVUses.jpg
+dot -Grankdir=LR -T jpg Docs\GVClasses.dot > Docs\GVClasses.jpg
