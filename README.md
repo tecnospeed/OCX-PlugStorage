@@ -1,5 +1,9 @@
 # Componente Plug Storage
 
+## Link para download do arquivo .ocx
+
+<https://drive.google.com/file/d/1uKnmSPHX_fKh-rSK_hkNqORpA9BJC_jY/view?usp=sharing>
+
 ### Sobre o Componente
 
 Trata-se de um componente na forma de controle ActiveX (*.ocx consumidos por linguagens compatíveis com ActiveX, como VB6, aplicações .NET, C++, Node.js, etc) ou de BPL/DCU (arquivos semelhantes a DLLs e objetos linkáveis consumidos diretamente pelo Delphi) incluído pelos clientes em seus projetos com o objetivo de facilitar a comunicação com o nosso produto Plug Storage.
