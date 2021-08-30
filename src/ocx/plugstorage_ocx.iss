@@ -31,7 +31,7 @@ ChangesEnvironment=no
 UninstallFilesDir={pf}\TecnoSpeed\{#MyAppName}
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
-OutputBaseFilename=setup_spdplugstorage.exe
+OutputBaseFilename=setup_spdplugstorage
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -41,26 +41,29 @@ Name: ProgramFiles; Description: Arquivos do sistema; Types: full compact custom
 Name: OCX; Description: DLLs ActiveX; Types: full compact custom
 
 [Files]
-;Source: {#NFe}\build\files\images\NFe.ico; DestDir: {app}; flags: ignoreversion
-;Source: {#NFe}\build\output\dllsFull\NFeGovX.ocx; DestDir: {code:GetSysPath|{sys}}; Components: OCX; Flags: regserver 32bit overwritereadonly ignoreversion;
-;Source: {#NFe}\build\output\dllsFull64\NFeGovX.ocx; DestDir: {sys}; Components: OCX; Flags: regserver 64bit overwritereadonly ignoreversion; Check: IsWin64
-Source: {#OCXPlugStorage}\OCX-PlugStorage\src\ocx\spdPlugStorageX.ocx; DestDir: {syswow64}; Components: OCX; Flags: regserver 32bit overwritereadonly ignoreversion; Check: IsWin64
+;Source: {#OCXPlugStorage}\build\files\images\PlugStorage.ico; DestDir: {app}; flags: ignoreversion
+Source: {#OCXPlugStorage}\OCX-PlugStorage\src\ocx\spdPlugStorageX32.ocx; DestDir: {sys}; Components: OCX; Flags: regserver 32bit overwritereadonly ignoreversion; Check: Not IsWin64
+Source: {#OCXPlugStorage}\OCX-PlugStorage\src\ocx\spdPlugStorageX64.ocx; DestDir: {sys}; Components: OCX; Flags: regserver 64bit overwritereadonly ignoreversion; Check: IsWin64
+Source: {#OCXPlugStorage}\OCX-PlugStorage\src\ocx\spdPlugStorageX32.ocx; DestDir: {syswow64}; Components: OCX; Flags: regserver 32bit overwritereadonly ignoreversion; Check: IsWin64
 
 [Run]
-Filename: regsvr32.exe; Parameters: spdPlugStorageX.ocx /s; Flags: shellexec waituntilidle
-Filename: {sys}\regsvr32.exe; Parameters: spdPlugStorageX.ocx /s; Flags: shellexec waituntilidle
+Filename: {sys}\regsvr32.exe; Parameters: spdPlugStorageX32.ocx /s; Flags: shellexec waituntilidle; Check: Not IsWin64
+Filename: {sys}\regsvr32.exe; Parameters: spdPlugStorageX64.ocx /s; Flags: shellexec waituntilidle; Check: IsWin64
+Filename: {syswow64}\regsvr32.exe; Parameters: spdPlugStorageX32.ocx /s; Flags: shellexec waituntilidle; Check: IsWin64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: brazilianportuguese; MessagesFile: compiler:Languages\BrazilianPortuguese.isl
 
 [UninstallRun]
-Filename: regsvr32.exe; Parameters: /u spdPlugStorageX.ocx /s; Flags: shellexec waituntilidle
-Filename: {sys}\regsvr32.exe; Parameters: /u spdPlugStorageX.ocx /s; Flags: shellexec waituntilidle
+Filename: {sys}\regsvr32.exe; Parameters: spdPlugStorageX32.ocx /u; Flags: shellexec waituntilidle; Check: Not IsWin64
+Filename: {sys}\regsvr32.exe; Parameters: spdPlugStorageX64.ocx /u; Flags: shellexec waituntilidle; Check: IsWin64
+Filename: {syswow64}\regsvr32.exe; Parameters: spdPlugStorageX32.ocx /u; Flags: shellexec waituntilidle; Check: IsWin64
 
 [UninstallDelete]
-Name: {sys}\spdPlugStorageX.ocx; Type: files
-Name: {code:GetSysPath|{sys}}\spdPlugStorageX.ocx; Type: files; Check: IsWin64
+Name: {sys}\spdPlugStorageX32.ocx; Type: files; Check: Not IsWin64    
+Name: {sys}\spdPlugStorageX64.ocx; Type: files; Check: IsWin64
+Name: {syswow64}\spdPlugStorageX32.ocx; Type: files; Check: IsWin64
 
 [Code]
 function PathToMD5(Path: String): String;
