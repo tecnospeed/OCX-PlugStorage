@@ -16,7 +16,7 @@ Para utilizar os métodos é necessário ter um cadastro ativo no Plug Storage e
 
 ### Link para download do instalador .exe
 
-<https://drive.google.com/file/d/19jWkYWDGftP9C8DB9lZeIlxC2k9kgH83/view?usp=sharing>
+<https://drive.google.com/file/d/1NJftxujoyINouyiwVAWU5hyOigUpL-zh/view?usp=sharing>
 
 ### Interfaces
 
